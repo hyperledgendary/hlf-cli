@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "description": "Hyperledger Fabric CLI",
   "main": "index.js",
+  "files": [
+    "/bin/hlf",
+    "/lib/*.js"
+  ],
   "bin": {
     "hlf": "bin/hlf"
   },
   "scripts": {
+    "genversion": "genversion lib/version.js",
+    "prepublish": "npm run genversion",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,5 +29,12 @@
   "bugs": {
     "url": "https://github.com/jt-nti/hlf-cli/issues"
   },
-  "homepage": "https://github.com/jt-nti/hlf-cli#readme"
+  "homepage": "https://github.com/jt-nti/hlf-cli#readme",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "fabric-protos": "^2.0.0-snapshot.1"
+  },
+  "devDependencies": {
+    "genversion": "^2.1.1"
+  }
 }

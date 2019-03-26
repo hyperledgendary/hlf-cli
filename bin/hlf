@@ -1,4 +1,33 @@
 #!/usr/bin/env node
 // SPDX-License-Identifier: Apache-2.0
 
-require('../')()
+const program = require('commander');
+
+const hlf = require('../');
+const version = require('../lib/version');
+
+program
+  .version(version, '-v, --version');
+
+program
+  .command('package')
+  .description('display package information')
+  .alias('pkg')
+  .option('-f, --file <filename>', 'location of package')
+  .action(async options => {
+    await hlf.package(options.file);
+  });
+
+// error on unknown commands
+program.on('command:*', function () {
+  console.error('Invalid command: %s\nSee --help for a list of available commands.', program.args.join(' '));
+  process.exit(1);
+});
+
+program
+  .parse(process.argv);
+
+// default to showing help
+if (!process.argv.slice(2).length) {
+  program.help();
+}
