@@ -10,12 +10,13 @@ program
   .version(version, '-v, --version');
 
 program
-  .command('package')
+  .command('package <file>')
   .description('display package information')
   .alias('pkg')
-  .option('-f, --file <filename>', 'location of package')
-  .action(async options => {
-    await hlf.package(options.file);
+  .option('-f, --extract-file <filename>', 'extract code package to file')
+  .option('-x, --extract', 'extract code package to stdout')
+  .action(async (file, options) => {
+    await hlf.package(file, options.extract, options.extractFile);
   });
 
 // error on unknown commands

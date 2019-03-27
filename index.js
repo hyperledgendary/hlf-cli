@@ -6,8 +6,9 @@ const path = require('path');
 const util = require('util');
 
 const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
 
-async function package(file) {
+async function package(file, extract, extractFile) {
   let cdsBuffer;
   let cdsData;
 
@@ -23,14 +24,28 @@ async function package(file) {
     console.error(`Unable to decode package file ${file}`);
   }
 
-  console.log(`Path: ${cdsData.chaincode_spec.chaincode_id.path}`);
-  console.log(`Name: ${cdsData.chaincode_spec.chaincode_id.name}`);
-  console.log(`Version: ${cdsData.chaincode_spec.chaincode_id.version}`);
+  if (extract || extractFile) {
+    const codePackageBuffer = cdsData.code_package.toBuffer();
 
-  // TODO work out how to get the name out of protobufjs!!!
-  console.log(`Type: ${cdsData.chaincode_spec.type}`);
+    if (extract) {
+      process.stdout.write(codePackageBuffer);
+    }
 
-  // TODO list contents
+    if (extractFile && extractFile.length > 0) {
+      try {
+        await writeFile(extractFile, codePackageBuffer);
+      } catch (err) {
+        console.error(`Unable to write code package file ${extractFile}`);
+      }
+    }
+  } else {
+    console.log(`Path: ${cdsData.chaincode_spec.chaincode_id.path}`);
+    console.log(`Name: ${cdsData.chaincode_spec.chaincode_id.name}`);
+    console.log(`Version: ${cdsData.chaincode_spec.chaincode_id.version}`);
+
+    // TODO work out how to get the name of an enum out of protobufjs!!!
+    console.log(`Type: ${cdsData.chaincode_spec.type}`);
+  }
 }
 
 module.exports = {
