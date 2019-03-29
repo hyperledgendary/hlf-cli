@@ -1,6 +1,6 @@
 {
   "name": "hlf-cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Hyperledger Fabric CLI",
   "main": "index.js",
   "files": [
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jt-nti/hlf-cli.git"
+    "url": "git+https://github.com/hyperledgendary/hlf-cli.git"
   },
   "keywords": [
     "Hyperledger",
@@ -27,9 +27,9 @@
   "author": "James Taylor",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/jt-nti/hlf-cli/issues"
+    "url": "https://github.com/hyperledgendary/hlf-cli/issues"
   },
-  "homepage": "https://github.com/jt-nti/hlf-cli#readme",
+  "homepage": "https://github.com/hyperledgendary/hlf-cli#readme",
   "dependencies": {
     "commander": "^2.19.0",
     "fabric-protos": "^2.0.0-snapshot.1"
