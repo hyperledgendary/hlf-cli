@@ -10,6 +10,13 @@ program
   .version(version, '-v, --version');
 
 program
+  .command('block <file>')
+  .description('display block information')
+  .action(async (file, options) => {
+    await hlf.block(file);
+  });
+
+program
   .command('package <file>')
   .description('display package information')
   .alias('pkg')
