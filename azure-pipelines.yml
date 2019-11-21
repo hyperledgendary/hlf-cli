@@ -24,7 +24,9 @@ steps:
     npm install
   displayName: 'npm install'
 
-- script: |
-    echo publish
+- task: Npm@1
+  inputs:
+    command: 'publish'
+    publishEndpoint: 'npmjs'
   displayName: 'npm publish'
   condition: startsWith(variables['build.sourceBranch'], 'refs/tags/v')
