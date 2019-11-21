@@ -1,6 +1,6 @@
 {
   "name": "hlf-cli",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Hyperledger Fabric CLI",
   "main": "index.js",
   "files": [
