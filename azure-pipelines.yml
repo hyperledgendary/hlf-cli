@@ -31,6 +31,7 @@ steps:
 
 - script: |
     npm config set registry https://registry.npmjs.com/
+    npm config set always-auth true
     npm config ls
   displayName: 'set npmjs registry'
 
@@ -38,6 +39,10 @@ steps:
   inputs:
     workingFile: '$(Agent.TempDirectory)/.npmrc'
     customEndpoint: 'npmjs'
+
+- script: |
+    npm whoami
+  displayName: 'npm whoami'
 
 - script: |
     npm publish
