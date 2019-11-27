@@ -30,9 +30,10 @@ steps:
   displayName: 'create user .npmrc file'
 
 - script: |
-    npm config set registry https://registry.npmjs.com/
+    npm config set registry https://registry.npmjs.org/
     npm config set always-auth true
     npm config ls
+    cat $(Agent.TempDirectory)/.npmrc
   displayName: 'set npmjs registry'
 
 - task: npmAuthenticate@0
